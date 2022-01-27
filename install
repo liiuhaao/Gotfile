@@ -1,0 +1,25 @@
+#!/bin/sh
+
+rm -rf ~/.config/qtile
+ln -sf $(pwd)/qtile ~/.config/qtile
+
+rm -rf ~/.config/qutebrowser
+ln -sf $(pwd)/qutebrowser ~/.config/qutebrowser
+
+rm -rf ~/.config/alacritty
+ln -sf $(pwd)/alacritty ~/.config/alacritty
+
+rm -rf ~/.config/zathura
+ln -sf $(pwd)/zathura ~/.config/zathura
+
+rm -rf ~/.config/dunst
+ln -sf $(pwd)/dunst ~/.config/dunst
+
+rm -rf ~/.config/picom
+ln -sf $(pwd)/picom ~/.config/picom
+
+rm -rf ~/.config/rofi
+ln -sf $(pwd)/rofi ~/.config/rofi
+
+rm -rf ~/.pam_environment
+ln -sf $(pwd)/pam_environment ~/.pam_environment

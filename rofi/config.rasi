@@ -1,0 +1,91 @@
+* {
+    bg0:                    #282828;
+    bg2:                    #504945;
+    fg2:                    #d5c4a1;
+
+    background:             @bg0;
+    foreground:             @fg2;
+    font:                   "SourceCodePro 15";
+}
+
+#window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    padding:    0px;
+    border:     0px;
+    children:   [ horibox ];
+}
+
+#horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+
+#prompt{
+    background-color:   @bg2;
+    text-color:         @fg2;
+}
+
+#listview {
+    border:     0px;
+    layout:     horizontal;
+    spacing:    10px;
+    lines:      100;
+}
+
+#entry {
+    expand:     false;
+    padding:    0px 5px;
+    width:      10em;
+}
+
+#element {
+    padding: 0px 2px;
+}
+element.normal.normal {
+    background-color: @bg0;
+    text-color:       @fg2;
+}
+
+element.normal.urgent {
+    background-color: @bg0;
+    text-color:       @fg2;
+}
+
+element.normal.active {
+    background-color: @bg0;
+    text-color:       @fg2;
+}
+
+element.selected.normal {
+    background-color: @bg2;
+    text-color:       @fg2;
+}
+
+element.selected.urgent {
+    background-color: @bg2;
+    text-color:       @fg2;
+}
+
+element.selected.active {
+    background-color: @bg2;
+    text-color:       @fg2;
+}
+
+element.alternate.normal {
+    background-color: @bg0;
+    text-color:       @fg2;
+}
+
+element.alternate.urgent {
+    background-color: @bg0;
+    text-color:       @fg2;
+}
+
+element.alternate.active {
+    background-color: @bg0;
+    text-color:       @bg2;
+}
+
+// vim:ft=css
