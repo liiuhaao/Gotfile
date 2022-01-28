@@ -1,5 +1,6 @@
 import subprocess
 
+import my_widgets
 from gruvbox import *
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -20,11 +21,16 @@ keys = [
     Key([mod], "b", lazy.hide_show_bar("top")),
     Key([mod], "space", lazy.spawn("rofi -show run -font 'SourceCodePro 15'")),
     Key([mod], "q", lazy.window.kill()),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("/home/liuhao/Scripts/light_up.sh")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("/home/liuhao/Scripts/light_down.sh")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("/home/liuhao/Scripts/volume_up.sh")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("/home/liuhao/Scripts/volume_down.sh")),
-    Key([], "XF86AudioMute", lazy.spawn("/home/liuhao/Scripts/volume_mute.sh")),
+    Key([], "XF86MonBrightnessUp",
+        lazy.spawn("/home/liuhao/Scripts/light_up.sh")),
+    Key([], "XF86MonBrightnessDown",
+        lazy.spawn("/home/liuhao/Scripts/light_down.sh")),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("/home/liuhao/Scripts/volume_up.sh")),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("/home/liuhao/Scripts/volume_down.sh")),
+    Key([], "XF86AudioMute",
+        lazy.spawn("/home/liuhao/Scripts/volume_mute.sh")),
     Key([], "Print", lazy.spawn("flameshot gui")),
 
     # Tile
@@ -95,10 +101,9 @@ widget_defaults = dict(
     padding=0,
 )
 
+
 # Run the autostart.sh script on startup
-
-
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def startup():
     subprocess.call("~/Scripts/autostart.sh")
 
@@ -147,7 +152,22 @@ def get_top_bar():
                     "Button5": lambda: qtile.cmd_simulate_keypress([mod], "j"),
                 },
             ),
-            widget.Battery(
+            my_widgets.Volume(
+                background=bg0,
+                foreground=fg2,
+                fmt="{}",
+                volume_down_command="volume_down.sh",
+                volume_up_command="volume_up.sh",
+                mouse_callbacks={
+                    "Button4":
+                    lambda: qtile.cmd_spawn("/home/liuhao/Scripts/volume_up.sh"
+                                            ),
+                    "Button5":
+                    lambda: qtile.cmd_spawn(
+                        "/home/liuhao/Scripts/volume_down.sh"),
+                },
+            ),
+            my_widgets.Battery(
                 background=bg0,
                 foreground=fg2,
                 low_forward=bright_red,
@@ -156,31 +176,25 @@ def get_top_bar():
                 discharge_char="",
                 full_char="",
                 empty_char="",
-                format=" {char} {percent:1.0%} ",
+                format="  {char} {percent:1.0%} ",
                 show_short_text=False,
                 update_interval=1,
                 mouse_callbacks={
-                    "Button4": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/light_up.sh"),
-                    "Button5": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/light_down.sh"),
+                    "Button4":
+                    lambda: qtile.cmd_spawn("/home/liuhao/Scripts/light_up.sh"
+                                            ),
+                    "Button5":
+                    lambda: qtile.cmd_spawn(
+                        "/home/liuhao/Scripts/light_down.sh"),
                 },
             ),
-            widget.Volume(
+            my_widgets.Clock(
                 background=bg0,
                 foreground=fg2,
-                fmt=" {}",
-                volume_down_command="volume_down.sh",
-                volume_up_command="volume_up.sh",
+                format="  %m/%d %A  %H:%M:%S ",
                 mouse_callbacks={
-                    "Button4": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/volume_up.sh"),
-                    "Button5": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/volume_down.sh"),
-                },
-            ),
-            widget.Clock(
-                background=bg0,
-                foreground=fg2,
-                format="  %m/%d 周%a  %H:%M:%S ",
-                mouse_callbacks={
-                    "Button1": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/date.sh"),
+                    "Button1":
+                    lambda: qtile.cmd_spawn("/home/liuhao/Scripts/date.sh"),
                 },
             ),
             widget.Systray(
