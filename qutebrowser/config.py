@@ -17,10 +17,10 @@ c.content.plugins = True
 c.content.blocking.method = "both"
 c.content.javascript.can_access_clipboard = True
 
-# c.url.start_pages = ["about:blank"]
-# c.url.default_page = "about:blank"
+c.url.start_pages = ["www.google.com"]
+c.url.default_page = "www.google.com"
 c.url.searchengines = {
-    "DEFAULT": "http://duckduckgo.com/?q={}",
+    "DEFAULT": "https://www.google.com/search?q={}",
     "gg": "https://www.google.com/search?q={}",
     "wk": "https://wikipedia.org/wiki/{}",
     "gh": "https://github.com/search?q={}",
