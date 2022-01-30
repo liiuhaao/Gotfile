@@ -23,3 +23,8 @@ ln -sf $(pwd)/rofi ~/.config/rofi
 
 rm -rf ~/.pam_environment
 ln -sf $(pwd)/pam_environment ~/.pam_environment
+
+for s in $(ls $(pwd)/scripts); do
+	rm -rf ~/.local/bin/$s
+	ln -sf $(pwd)/scripts/$s ~/.local/bin/$s
+done

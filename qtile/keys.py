@@ -1,8 +1,11 @@
+import os
+
 from libqtile.config import Click, Drag, Group, Key
 from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "alacritty"
+home = os.path.expanduser('~')
 
 keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
@@ -17,15 +20,14 @@ keys = [
     Key([mod], "space", lazy.spawn("rofi -show run -font 'SourceCodePro 15'")),
     Key([mod], "q", lazy.window.kill()),
     Key([], "XF86MonBrightnessUp",
-        lazy.spawn("/home/liuhao/Scripts/light_up.sh")),
+        lazy.spawn(home + "/.local/bin/brightness.sh up")),
     Key([], "XF86MonBrightnessDown",
-        lazy.spawn("/home/liuhao/Scripts/light_down.sh")),
+        lazy.spawn(home + "/.local/bin/brightness.sh down")),
     Key([], "XF86AudioRaiseVolume",
-        lazy.spawn("/home/liuhao/Scripts/volume_up.sh")),
+        lazy.spawn(home + "/.local/bin/volume.sh up")),
     Key([], "XF86AudioLowerVolume",
-        lazy.spawn("/home/liuhao/Scripts/volume_down.sh")),
-    Key([], "XF86AudioMute",
-        lazy.spawn("/home/liuhao/Scripts/volume_mute.sh")),
+        lazy.spawn(home + "/.local/bin/volume.sh down")),
+    Key([], "XF86AudioMute", lazy.spawn(home + "/.local/bin/volume.sh toggle")),
     Key([], "Print", lazy.spawn("flameshot gui")),
 
     # Tile
@@ -105,5 +107,6 @@ groups.append(
     ]), )
 
 keys.extend([
-    Key([mod,"shift"], 'space', lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod, "shift"], 'space',
+        lazy.group['scratchpad'].dropdown_toggle('term')),
 ])

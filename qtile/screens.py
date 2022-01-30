@@ -1,8 +1,12 @@
+import os
+
 import my_widgets
 from gruvbox import bg0, bg2, bright_red, dark_blue, fg2
 from keys import mod, terminal
 from libqtile import bar, qtile, widget
 from libqtile.config import Screen
+
+home = os.path.expanduser('~')
 
 widget_defaults = dict(
     font="SauceCodePro Nerd Font",
@@ -62,12 +66,14 @@ def get_top_bar(margin):
                 volume_down_command="volume_down.sh",
                 volume_up_command="volume_up.sh",
                 mouse_callbacks={
+                    "Button1":
+                    lambda: qtile.cmd_spawn(home +
+                                            "/.local/bin/volume.sh toggle"),
                     "Button4":
-                    lambda: qtile.cmd_spawn("/home/liuhao/Scripts/volume_up.sh"
-                                            ),
+                    lambda: qtile.cmd_spawn(home + "/.local/bin/volume.sh up"),
                     "Button5":
-                    lambda: qtile.cmd_spawn(
-                        "/home/liuhao/Scripts/volume_down.sh"),
+                    lambda: qtile.cmd_spawn(home + "/.local/bin/volume.sh down"
+                                            ),
                 },
             ),
             my_widgets.Battery(
@@ -84,11 +90,11 @@ def get_top_bar(margin):
                 update_interval=1,
                 mouse_callbacks={
                     "Button4":
-                    lambda: qtile.cmd_spawn("/home/liuhao/Scripts/light_up.sh"
-                                            ),
+                    lambda: qtile.cmd_spawn(home +
+                                            "/.local/bin/brightness.sh up"),
                     "Button5":
-                    lambda: qtile.cmd_spawn(
-                        "/home/liuhao/Scripts/light_down.sh"),
+                    lambda: qtile.cmd_spawn(home +
+                                            "/.local/bin/brightness.sh down"),
                 },
             ),
             my_widgets.Clock(
@@ -96,9 +102,12 @@ def get_top_bar(margin):
                 foreground=fg2,
                 format="  %m/%d %A  %H:%M:%S ",
                 mouse_callbacks={
-                    "Button1": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/date.sh curr"),
-                    "Button4": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/date.sh prev"),
-                    "Button5": lambda: qtile.cmd_spawn("/home/liuhao/Scripts/date.sh next"),
+                    "Button1":
+                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh curr"),
+                    "Button4":
+                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh prev"),
+                    "Button5":
+                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh next"),
                 },
             ),
             widget.Systray(
@@ -107,7 +116,7 @@ def get_top_bar(margin):
             ),
         ],
         30,
-        margin=[margin,margin, margin,margin],
+        margin=[margin, margin, margin, margin],
     )
 
 
