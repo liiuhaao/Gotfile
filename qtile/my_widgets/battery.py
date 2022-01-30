@@ -1,6 +1,5 @@
-# from lib2to3.widget.Battery import BatteryState
-
 from libqtile import widget
+from libqtile.widget.battery import BatteryState
 
 
 class Battery(widget.Battery):
@@ -28,26 +27,25 @@ class Battery(widget.Battery):
         if self.hide_threshold is not None and status.percent > self.hide_threshold:
             return ""
 
-        state = str(status.state)
         if self.layout is not None:
-            if state == "BatteryState.DISCHARGING" and status.percent < self.low_percentage:
+            if status.state == BatteryState.DISCHARGING and status.percent < self.low_percentage:
                 self.layout.colour = self.low_foreground
                 self.background = self.low_background
             else:
                 self.layout.colour = self.foreground
                 self.background = self.normal_background
 
-        if state == "BatteryState.CHARGING":
+        if status.state == BatteryState.CHARGING:
             self.epoch = (self.epoch + 1) % len(self.char_list)
             char = self.char_list[self.epoch]
-        elif state == "BatteryState.DISCHARGING":
+        elif status.state == BatteryState.DISCHARGING:
             char = self.char_list[int(status.percent * len(self.char_list))]
-        elif state == "BatteryState.FULL":
+        elif status.state == BatteryState.FULL:
             if self.show_short_text:
                 return "Full"
             char = self.char_list[-1]
-        elif state == "BatteryState.EMPTY" or (state == "BatteryState.UNKNOWN"
-                                               and status.percent == 0):
+        elif status.state == BatteryState.EMPTY or (
+                status.state == BatteryState.UNKNOWN and status.percent == 0):
             if self.show_short_text:
                 return "Empty"
             char = self.char_list[0]
@@ -63,3 +61,13 @@ class Battery(widget.Battery):
                                   watt=status.power,
                                   hour=hour,
                                   min=minute)
+    #
+    # def restore(self):
+    #     self.format = '{char}'
+    #     self.font = 'Font Awesome 5 Free'
+    #     self.timer_setup()
+    #
+    # def button_press(self, x, y, button):
+    #     self.format = '{percent:2.0%}'
+    #     self.timer_setup()
+    #     self.timeout_add(1, self.restore)
