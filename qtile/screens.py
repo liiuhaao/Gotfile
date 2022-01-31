@@ -6,8 +6,6 @@ from keys import mod, terminal
 from libqtile import bar, qtile, widget
 from libqtile.config import Screen
 
-home = os.path.expanduser('~')
-
 widget_defaults = dict(
     font="SauceCodePro Nerd Font",
     fontsize=20,
@@ -66,14 +64,9 @@ def get_top_bar(margin):
                 volume_down_command="volume_down.sh",
                 volume_up_command="volume_up.sh",
                 mouse_callbacks={
-                    "Button1":
-                    lambda: qtile.cmd_spawn(home +
-                                            "/.local/bin/volume.sh toggle"),
-                    "Button4":
-                    lambda: qtile.cmd_spawn(home + "/.local/bin/volume.sh up"),
-                    "Button5":
-                    lambda: qtile.cmd_spawn(home + "/.local/bin/volume.sh down"
-                                            ),
+                    "Button1": lambda: qtile.cmd_spawn("volume.sh toggle"),
+                    "Button4": lambda: qtile.cmd_spawn("volume.sh up"),
+                    "Button5": lambda: qtile.cmd_spawn("volume.sh down"),
                 },
             ),
             my_widgets.Battery(
@@ -89,12 +82,8 @@ def get_top_bar(margin):
                 show_short_text=False,
                 update_interval=1,
                 mouse_callbacks={
-                    "Button4":
-                    lambda: qtile.cmd_spawn(home +
-                                            "/.local/bin/brightness.sh up"),
-                    "Button5":
-                    lambda: qtile.cmd_spawn(home +
-                                            "/.local/bin/brightness.sh down"),
+                    "Button4": lambda: qtile.cmd_spawn("brightness.sh up"),
+                    "Button5": lambda: qtile.cmd_spawn("brightness.sh down"),
                 },
             ),
             my_widgets.Clock(
@@ -102,12 +91,9 @@ def get_top_bar(margin):
                 foreground=fg2,
                 format="  %m/%d %A  %H:%M:%S ",
                 mouse_callbacks={
-                    "Button1":
-                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh curr"),
-                    "Button4":
-                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh prev"),
-                    "Button5":
-                    lambda: qtile.cmd_spawn(home + "/.local/bin/date.sh next"),
+                    "Button1": lambda: qtile.cmd_spawn("date.sh curr"),
+                    "Button4": lambda: qtile.cmd_spawn("date.sh prev"),
+                    "Button5": lambda: qtile.cmd_spawn("date.sh next"),
                 },
             ),
             widget.Systray(

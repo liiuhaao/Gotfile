@@ -5,7 +5,6 @@ from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "alacritty"
-home = os.path.expanduser('~')
 
 keys = [
     Key([mod, "control"], "q", lazy.shutdown()),
@@ -17,17 +16,13 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod], "Return", lazy.spawn(terminal)),
     Key([mod], "b", lazy.hide_show_bar("top")),
-    Key([mod], "space", lazy.spawn("rofi -show run -font 'SourceCodePro 15'")),
+    Key([mod], "space", lazy.spawn("rofi -show run")),
     Key([mod], "q", lazy.window.kill()),
-    Key([], "XF86MonBrightnessUp",
-        lazy.spawn(home + "/.local/bin/brightness.sh up")),
-    Key([], "XF86MonBrightnessDown",
-        lazy.spawn(home + "/.local/bin/brightness.sh down")),
-    Key([], "XF86AudioRaiseVolume",
-        lazy.spawn(home + "/.local/bin/volume.sh up")),
-    Key([], "XF86AudioLowerVolume",
-        lazy.spawn(home + "/.local/bin/volume.sh down")),
-    Key([], "XF86AudioMute", lazy.spawn(home + "/.local/bin/volume.sh toggle")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightness.sh up")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightness.sh down")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("volume.sh up")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("volume.sh down")),
+    Key([], "XF86AudioMute", lazy.spawn("volume.sh toggle")),
     Key([], "Print", lazy.spawn("flameshot gui")),
 
     # Tile
