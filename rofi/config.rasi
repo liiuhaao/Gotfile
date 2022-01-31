@@ -5,7 +5,7 @@
 
     background:             @bg0;
     foreground:             @fg2;
-    font:                   "SourceCodePro 15";
+    font:                   "SauceCodePro Nerd Font 15";
 }
 
 #window {
