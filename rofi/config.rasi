@@ -1,10 +1,19 @@
 * {
     bg0:                    #282828;
+    bg1:                    #3c3836;
     bg2:                    #504945;
+    bg3:                    #665c54;
+    bg4:                    #7c6f64;
+
+    fg0:                    #fbf1c7;
+    fg1:                    #ebdbb2;
     fg2:                    #d5c4a1;
+    fg3:                    #bdae93;
+    fg4:                    #a89984;
+
 
     background:             @bg0;
-    foreground:             @fg2;
+    foreground:             @fg4;
     font:                   "SauceCodePro Nerd Font 15";
 }
 
@@ -23,14 +32,14 @@
 }
 
 #prompt{
-    background-color:   @bg2;
+    background-color:   @bg1;
     text-color:         @fg2;
 }
 
 #listview {
     border:     0px;
     layout:     horizontal;
-    spacing:    10px;
+    spacing:    0px;
     lines:      100;
 }
 
@@ -41,51 +50,51 @@
 }
 
 #element {
-    padding: 0px 2px;
+    padding: 0px 10px;
 }
 element.normal.normal {
     background-color: @bg0;
-    text-color:       @fg2;
+    text-color:       @fg4;
 }
 
 element.normal.urgent {
     background-color: @bg0;
-    text-color:       @fg2;
+    text-color:       @fg4;
 }
 
 element.normal.active {
     background-color: @bg0;
-    text-color:       @fg2;
+    text-color:       @fg4;
 }
 
 element.selected.normal {
-    background-color: @bg2;
+    background-color: @bg1;
     text-color:       @fg2;
 }
 
 element.selected.urgent {
-    background-color: @bg2;
+    background-color: @bg1;
     text-color:       @fg2;
 }
 
 element.selected.active {
-    background-color: @bg2;
+    background-color: @bg1;
     text-color:       @fg2;
 }
 
 element.alternate.normal {
     background-color: @bg0;
-    text-color:       @fg2;
+    text-color:       @fg4;
 }
 
 element.alternate.urgent {
     background-color: @bg0;
-    text-color:       @fg2;
+    text-color:       @fg4;
 }
 
 element.alternate.active {
     background-color: @bg0;
-    text-color:       @bg2;
+    text-color:       @fg4;
 }
 
 // vim:ft=css
