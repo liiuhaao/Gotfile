@@ -45,7 +45,7 @@ dark_orange = "#d65d0e"
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
-c.colors.completion.fg = [fg4, bright_aqua, bright_yellow]
+c.colors.completion.fg = [fg1, bright_aqua, bright_yellow]
 
 # Background color of the completion widget for odd rows.
 c.colors.completion.odd.bg = bg0
@@ -76,8 +76,7 @@ c.colors.completion.item.selected.border.top = bg2
 
 # Bottom border color of the selected completion item.
 c.colors.completion.item.selected.border.bottom = (
-    c.colors.completion.item.selected.border.top
-)
+    c.colors.completion.item.selected.border.top)
 
 # Foreground color of the matched text in the selected completion item.
 c.colors.completion.item.selected.match.fg = bright_orange
@@ -305,13 +304,13 @@ c.colors.tabs.selected.odd.bg = bg1
 c.colors.tabs.selected.even.fg = c.colors.tabs.selected.odd.fg
 
 # Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = bg1
+c.colors.tabs.selected.even.bg = c.colors.tabs.selected.odd.bg
 
 # Background color of pinned unselected even tabs.
 c.colors.tabs.pinned.even.bg = bright_green
 
 # Foreground color of pinned unselected even tabs.
-c.colors.tabs.pinned.even.fg = bg4
+c.colors.tabs.pinned.even.fg = bg0
 
 # Background color of pinned unselected odd tabs.
 c.colors.tabs.pinned.odd.bg = bright_green
@@ -320,7 +319,7 @@ c.colors.tabs.pinned.odd.bg = bright_green
 c.colors.tabs.pinned.odd.fg = c.colors.tabs.pinned.even.fg
 
 # Background color of pinned selected even tabs.
-c.colors.tabs.pinned.selected.even.bg = bg0
+c.colors.tabs.pinned.selected.even.bg = bg1
 
 # Foreground color of pinned selected even tabs.
 c.colors.tabs.pinned.selected.even.fg = c.colors.tabs.selected.odd.fg

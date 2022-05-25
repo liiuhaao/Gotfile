@@ -24,6 +24,13 @@ ln -sf $(pwd)/rofi ~/.config/rofi
 rm -rf ~/.pam_environment
 ln -sf $(pwd)/pam_environment ~/.pam_environment
 
+for s in $(ls $(pwd)/applications); do
+	rm -rf ~/.local/share/applications$s
+	ln -sf $(pwd)/applications/$s ~/.local/share/applications/$s
+done
+xdg-mime default zathura.desktop application/pdf
+xdg-mime default pcmanfm.desktop inode/directory
+
 for s in $(ls $(pwd)/scripts); do
 	rm -rf ~/.local/bin/$s
 	ln -sf $(pwd)/scripts/$s ~/.local/bin/$s

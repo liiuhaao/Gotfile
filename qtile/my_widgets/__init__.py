@@ -5,6 +5,7 @@ widgets = {
     "Battery": "battery",
     "Clock": "clock",
     "Volume": "volume",
+    "AnalogueClock": "analogueclock",
 }
 
 __all__, __dir__, __getattr__ = lazify_imports(widgets,

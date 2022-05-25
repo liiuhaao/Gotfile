@@ -4,11 +4,11 @@
 msgId="3"
 
 if [[ $1 == "up" ]]; then
-	amixer set Master 5%+ umute
+	amixer set Master 1%+ umute
 elif [[ $1 == "down" ]]; then
-	amixer set Master 5%- umute
+	amixer set Master 1%- umute
 else
-	amixer set Master toggle
+    amixer -D pulse set Master 1+ toggle
 fi
 
 volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"

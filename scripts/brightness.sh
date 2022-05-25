@@ -2,9 +2,9 @@
 
 msgId="2"
 if [ $1 == "up" ]; then
-	brightnessctl set +5%
+	brightnessctl set +1%
 else
-	brightnessctl set 5%-
+	brightnessctl set 1%-
 fi
 
 brightness="$(cat /sys/class/backlight/nvidia_0/brightness)"

@@ -1,19 +1,21 @@
 #! /bin/bash
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+ibus-daemon -x -d
+#
+# export GTK_IM_MODULE=fcitx5
+# export XMODIFIERS=@im=fcitx5
+# export QT_IM_MODULE=fcitx5
+# fcitx5 &
 
-export GTK_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
-export QT_IM_MODULE=fcitx5
-fcitx5 &
-
-picom &
+picom --experimental-backend &
 blueman-applet &
 nm-applet &
-slstatus &
 dunst &
-qv2ray &
-flameshot &
 unclutter -idle 1 -jitter 2 -root &
-
+start-pulseaudio-x11 &
+libinput-gestures-setup start &
 
 # Increase key repeat speed
 # Disable screen power saving settings
@@ -30,4 +32,4 @@ xcape -e 'Control_L=Escape'
 
 feh --randomize --bg-fill ~/Pictures/Wallpapers/
 
-brightnessctl set 20% &
+brightnessctl set 100% &

@@ -61,6 +61,7 @@ class Battery(widget.Battery):
                                   watt=status.power,
                                   hour=hour,
                                   min=minute)
+
     #
     # def restore(self):
     #     self.format = '{char}'

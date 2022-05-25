@@ -2,7 +2,7 @@
     monitor = 0
     follow = mouse
 
-    width = (300, 10000)
+    width = (0, 10000)
     height = 10000
     origin = top-right
     offset = (0, 0)

@@ -1,7 +1,5 @@
-import os
-
 import my_widgets
-from gruvbox import bg0, bg2, bright_red, dark_blue, fg2
+from gruvbox import color
 from keys import mod, terminal
 from libqtile import bar, qtile, widget
 from libqtile.config import Screen
@@ -13,12 +11,12 @@ widget_defaults = dict(
 )
 
 
-def get_top_bar(margin):
+def get_top_bar():
     return bar.Bar(
         [
             widget.TextBox(
-                background=bg0,
-                foreground=dark_blue,
+                background=color.bg0,
+                foreground=color.dark_blue,
                 text=" ",
                 mouse_callbacks={
                     "Button1":
@@ -27,16 +25,16 @@ def get_top_bar(margin):
                 },
             ),
             widget.GroupBox(
-                background=bg0,
-                active=fg2,
+                background=color.bg0,
+                active=color.fg2,
                 highlight_method="block",
                 hide_unused=False,
-                this_current_screen_border=bg2,
+                this_current_screen_border=color.bg2,
                 markup_focused=False,
             ),
             widget.WindowCount(
-                background=bg0,
-                foreground=fg2,
+                background=color.bg0,
+                foreground=color.fg2,
                 text_format="[{num}]",
                 mouse_callbacks={
                     "Button2": lambda: qtile.cmd_simulate_keypress([mod], "q"),
@@ -46,8 +44,8 @@ def get_top_bar(margin):
                 },
             ),
             widget.WindowName(
-                background=bg0,
-                foreground=fg2,
+                background=color.bg0,
+                foreground=color.fg2,
                 margin=0,
                 format=" {state}{name}",
                 mouse_callbacks={
@@ -58,8 +56,8 @@ def get_top_bar(margin):
                 },
             ),
             my_widgets.Volume(
-                background=bg0,
-                foreground=fg2,
+                background=color.bg0,
+                foreground=color.fg2,
                 fmt="{}",
                 volume_down_command="volume_down.sh",
                 volume_up_command="volume_up.sh",
@@ -70,9 +68,9 @@ def get_top_bar(margin):
                 },
             ),
             my_widgets.Battery(
-                background=bg0,
-                foreground=fg2,
-                low_forward=bright_red,
+                background=color.bg0,
+                foreground=color.fg2,
+                low_forward=color.bright_red,
                 charge_char="",
                 unknown_char="",
                 discharge_char="",
@@ -86,23 +84,34 @@ def get_top_bar(margin):
                     "Button5": lambda: qtile.cmd_spawn("brightness.sh down"),
                 },
             ),
-            my_widgets.Clock(
-                background=bg0,
-                foreground=fg2,
-                format="  %m/%d %A  %H:%M:%S ",
+            widget.Clock(
+                background=color.bg0,
+                foreground=color.fg2,
+                format="  %m/%d ",
                 mouse_callbacks={
                     "Button1": lambda: qtile.cmd_spawn("date.sh curr"),
                     "Button4": lambda: qtile.cmd_spawn("date.sh prev"),
                     "Button5": lambda: qtile.cmd_spawn("date.sh next"),
                 },
             ),
+            my_widgets.AnalogueClock(
+                background=color.bg0,
+                foreground=color.fg2,
+                face_border_colour=color.fg2,
+                # face_shape="square",
+                # face_shape="circle",
+            ),
+            widget.Clock(
+                background=color.bg0,
+                foreground=color.fg2,
+                format="%H:%M:%S ",
+            ),
             widget.Systray(
-                background=bg0,
-                foreground=fg2,
+                background=color.bg0,
+                foreground=color.fg2,
             ),
         ],
         30,
-        margin=[margin, margin, margin, margin],
     )
 
 
@@ -111,6 +120,6 @@ screens = [
         wallpaper=
         "/home/liuhao/Pictures/Wallpapers/Nighthawks_by_Edward_Hopper_1942.jpg",
         wallpaper_mode="fill",
-        top=get_top_bar(0),
+        top=get_top_bar(),
     ) for _ in range(2)
 ]

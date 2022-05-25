@@ -1,10 +1,12 @@
 c = c
 config = config
 
+terminal = "alacritty"
+
 config.load_autoconfig()
 
 c.auto_save.session = True
-c.content.proxy = "socks://localhost:9050"
+# c.content.proxy = "socks://localhost:9050"
 
 c.completion.shrink = True
 c.completion.use_best_match = True
@@ -34,25 +36,20 @@ c.url.searchengines = {
 }
 
 # c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.preferred_color_scheme = "dark"
+c.colors.webpage.preferred_color_scheme = "auto"
 
 c.downloads.location.directory = "~/Downloads"
 
-c.editor.command = ["st", "-e", "nvim", "{}"]
+c.editor.command = [terminal, "-e", "nvim", "{}"]
 
-c.fileselect.folder.command = ["st", "-e", "ranger", "--choosedir={}"]
-c.fileselect.multiple_files.command = ["st", "-e", "ranger", "--choosedir={}"]
-c.fileselect.single_file.command = ["st", "-e", "ranger", "--choosedir={}"]
+c.fileselect.folder.command = [terminal, "-e", "ranger", "--choosedir={}"]
+c.fileselect.multiple_files.command = [
+    terminal, "-e", "ranger", "--choosedir={}"
+]
+c.fileselect.single_file.command = [terminal, "-e", "ranger", "--choosedir={}"]
 
 c.fonts.default_size = "20px"
 c.fonts.default_family = "SauceCodePro Nerd Font"
-# c.fonts.contextmenu = "SauceCodePro Nerd Font"
-# c.fonts.web.family.cursive = "SauceCodePro Nerd Font"
-# c.fonts.web.family.fantasy = "SauceCodePro Nerd Font"
-# c.fonts.web.family.fixed = "SauceCodePro Nerd Font"
-# c.fonts.web.family.sans_serif = "SauceCodePro Nerd Font"
-# c.fonts.web.family.serif = "SauceCodePro Nerd Font"
-# c.fonts.web.family.standard = "SauceCodePro Nerd Font"
 
 c.scrolling.bar = "when-searching"
 
@@ -70,19 +67,19 @@ config.unbind("J")
 config.unbind("K")
 config.unbind("<Ctrl-q>")
 config.unbind("<Ctrl-n>")
+config.unbind("<Ctrl-Tab>")
 config.unbind("u")
 
 config.bind("<Alt-b>", "config-cycle tabs.show always switching")
 config.bind("<Alt-Shift-b>", "config-cycle statusbar.show always in-mode")
 config.bind("<Alt-h>", "back")
 config.bind("<Alt-l>", "forward")
-config.bind("<Alt-j>", "tab-next")
-config.bind("<Alt-k>", "tab-prev")
-config.bind("<Alt-Shift-j>", "tab-move +")
-config.bind("<Alt-Shift-k>", "tab-move -")
+config.bind("<Alt-n>", "tab-next")
+config.bind("<Alt-p>", "tab-prev")
+config.bind("<Alt-Shift-n>", "tab-move +")
+config.bind("<Alt-Shift-p>", "tab-move -")
 config.bind("<Alt-q>", "tab-close")
 config.bind("<Alt-Return>", "open -t")
-config.bind("<Alt-p>", "tab-pin")
 config.bind("<Alt-r>", "reload")
 config.bind("<Alt-u>", "undo")
 

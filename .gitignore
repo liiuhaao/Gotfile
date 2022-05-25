@@ -1,3 +1,4 @@
 nvim/plugin/
 qtile/__pycache__
 qutebrowser/autoconfig.yml
+**/__pycache__
